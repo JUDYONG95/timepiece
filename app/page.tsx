@@ -3,6 +3,10 @@ import { WatchCard } from "@/components/watch-card"
 import { Footer } from "@/components/footer"
 import { prisma } from "@/lib/db"
 
+// Force dynamic rendering to skip static generation at build time
+// This is needed because SQLite database isn't available during Vercel's build phase
+export const dynamic = 'force-dynamic'
+
 export default async function WatchShowcase() {
   const watches = await prisma.watch.findMany()
 
